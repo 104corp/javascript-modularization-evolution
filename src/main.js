@@ -1,8 +1,24 @@
-import Vue from "vue";
-import App from "./App.vue";
+import Reveal from "reveal.js";
 
-Vue.config.productionTip = false;
+import "reveal.js/dist/reveal.css";
+import "reveal.js/dist/theme/black.css";
+import "./reveal.css";
 
-new Vue({
-  render: h => h(App)
-}).$mount("#app");
+//
+// RevealMarkdown
+//
+import RevealMarkdown from "reveal.js/plugin/markdown/markdown.esm";
+
+//
+// RevealHighlight
+//
+import RevealHighlight from "reveal.js/plugin/highlight/highlight.esm";
+import "reveal.js/plugin/highlight/monokai.css";
+
+Reveal.initialize({
+  plugins: [RevealMarkdown, RevealHighlight],
+  hash: true,
+  markdown: {
+    smartypants: true
+  }
+});
