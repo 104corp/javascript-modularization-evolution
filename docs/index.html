@@ -468,6 +468,50 @@
             </script>
         </section>
 
+        <section data-markdown>
+            <script type="text/template">
+                ### 水火不容
+
+                平平都是一樣的 library，為什麼要分那麼多
+
+                # *UMD*
+                <!-- .element: class="fragment" -->
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+                # *UMD*
+                Universal Module Definition
+
+                同時支援 AMD 及 CommonJS
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+                # *UMD*
+                基本寫法
+
+                ```javascript
+                (function(global, factory) {
+                    if (typeof define === "function" && define.amd) {
+                        // 判斷為 AMD
+                        define(["exports"], factory);
+                    } else if (typeof exports !== "undefined") {
+                        // 判斷為 CommonJS
+                        factory(exports);
+                    }
+                })(this, function(exports) {
+                    function add(a, b) {
+                        return a + b;
+                    }
+                    exports.add = add;
+                });
+                ```
+            </script>
+        </section>
+
     </div>
 </div>
 <script type="text/javascript" src="/js/chunk-vendors.944d1ee7.js"></script><script type="text/javascript" src="/js/app.e9c07918.js"></script></body>
