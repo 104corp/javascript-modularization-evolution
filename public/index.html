@@ -46,6 +46,16 @@
 
         <section data-markdown>
             <script type="text/template">
+                ## Outline
+
+                這是一系列的歷史課
+
+                需要 Design pattern 的輔助
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
                 ### 黑暗時代
 
                 # *Module?*
@@ -490,8 +500,8 @@
 
         <section data-markdown>
             <script type="text/template">
-                # *UMD*
-                基本寫法
+                *UMD*
+                ### 寫法
 
                 ```javascript
                 (function(global, factory) {
@@ -512,6 +522,36 @@
             </script>
         </section>
 
+        <section data-markdown>
+            <script type="text/template">
+                *UMD*
+                ### 寫法
+
+                ```javascript
+                (function(global, factory) {
+                    // ...省略
+                    } else {
+                        var mod = {
+                            exports: {}
+                        };
+                        factory(mod.exports);
+                        global.math = mod.exports;
+                    }
+                })(this, function(exports) {
+                    // ...省略
+                });
+                ```
+
+                就算什麼都沒有也能放到 Global 上
+                <!-- .element: class="fragment" -->
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+                # *Question Time*
+            </script>
+        </section>
     </div>
 </div>
 </body>
