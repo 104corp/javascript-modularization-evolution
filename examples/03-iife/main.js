@@ -6,12 +6,17 @@ var Module = (function() {
   var bar = function() {
     document.getElementById("app").innerHTML = `<h1>${_private}</h1>`;
   };
+  var modify = function() {
+    _private = "safe now 2";
+  };
   return {
     foo: foo,
-    bar: bar
+    bar: bar,
+    modify: modify
   };
 })();
 
-Module.foo();
+Module.modify();
+Module.bar();
 // Module.bar();
 console.log(Module._private); // undefined

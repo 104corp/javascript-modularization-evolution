@@ -33,6 +33,15 @@
 
         <section data-markdown>
             <script type="text/template">
+                ### Why Modular?
+
+                # *Web is evolving*
+                <!-- .element: class="fragment" -->
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
                 <a href="https://requirejs.org/docs/why.html" target="_blank">
                     <img src="<%= BASE_URL %>javascript-is-complex.jpg"
                          style="width:360px;"/></a>
@@ -54,9 +63,11 @@
             </script>
         </section>
 
+        <!--    (1)黑暗時代    -->
+
         <section data-markdown>
             <script type="text/template">
-                ### 黑暗時代
+                ### 第一章：黑暗時代
 
                 # *Module?*
 
@@ -146,9 +157,11 @@
             </script>
         </section>
 
+        <!--    (2)封建時代    -->
+
         <section data-markdown>
             <script type="text/template">
-                ### 封建時代
+                ### 第二章：封建時代
 
                 # *SCRIPT LOADER*
 
@@ -324,9 +337,11 @@
             </script>
         </section>
 
+        <!--    (3)城堡時代    -->
+
         <section data-markdown>
             <script type="text/template">
-                ### 城堡時代
+                ### 第三章：城堡時代
 
                 # *COMMONJS*
 
@@ -546,6 +561,288 @@
                 <!-- .element: class="fragment" -->
             </script>
         </section>
+
+        <!--    (4)帝王時代    -->
+
+        <section data-markdown>
+            <script type="text/template">
+                ### 第四章：帝王時代
+
+                # *ES6* + *NPM* + *Babel*
+
+                各種科技集大成
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+                *ES6 Modules*
+
+                ### Named exports 寫法
+
+                ```javascript
+                // math.js
+                export function add(a, b) {
+                    return a + b;
+                };
+
+                export function sub(a, b) {
+                    return a - b;
+                }
+                ```
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+                *ES6 Modules*
+
+                ### How to import
+
+                ```javascript
+                // main.js
+                import { add } from "math.js";
+
+                add(1, 2); // 3
+                sub(2, 1); // 1
+                ```
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+                *ES6 Modules*
+
+                ### How to import
+
+                import 太多種覺得煩，我全都要！
+
+                ```javascript
+                // main.js
+                import * as math from "math.js";
+
+                math.add(1, 2); // 3
+                math.sub(2, 1); // 1
+                ```
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+                *ES6 Modules*
+
+                ### How to import
+
+                向下支援 CommonJS
+
+                ```javascript
+                // main.js
+                const add = require("math.js").add;
+                const sub = require("math.js").sub;
+
+                add(1, 2); // 3
+                sub(2, 1); // 1
+                ```
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+                *ES6 Modules*
+
+                ### Default exports 寫法
+
+                ```javascript
+                // math.js
+                export default {
+                    add(a, b) {
+                        return a + b;
+                    },
+                    sub(a, b) {
+                        return a - b;
+                    }
+                }
+                ```
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+                *ES6 Modules*
+
+                ### How to import
+
+                ```javascript
+                // main.js
+                import math from "math.js";
+
+                math.add(1, 2); // 3
+                math.sub(2, 1); // 1
+                ```
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+                *ES Module*
+
+                在瀏覽器上
+
+                ```
+                script(type='module' src='main.js')
+                script(type='module' src='modules/math.js') // 加上 type="module"
+                ```
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+                ### ES Module 在 Node 上
+
+                - *13* 才開始有正式支援
+                - 13 之前執行加上 *`--experimental-modules`*
+                - 副檔名會叫 *`.mjs`*
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+                *CommonJS*
+
+                ```javascript
+                add(100, 50); // ???
+
+                import { add } from "math.js";
+                ```
+
+                *ES6 Module*
+
+                ```javascript
+                add(100, 50); // ???
+
+                const add = require("math.js").add;
+                ```
+
+                ### Import Hoisted
+                <!-- .element: class="fragment" -->
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+                *ES Module*
+
+                各種環境支援度
+
+                <img src="<%= BASE_URL %>module_support.png" style="
+                            width: 900px;
+                            border: 0;
+                        "/>
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+                ## ES Module 運作模式
+
+                <img src="<%= BASE_URL %>07_3_phases.png" style="
+                            width: 900px;
+                            border: 0;
+                        "/>
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+                同步載入在 Sever 不是問題
+
+                <br>
+
+                <table>
+                    <thead>
+                    <tr>
+                        <th>硬碟 I/O</th>
+                        <th></th>
+                        <th>網速 I/O</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>HDD:</td>
+                        <td><em>100 MB/s</em></td>
+                        <td>ADSL:</td>
+                        <td><em>4 Mb/s</em></td>
+                    </tr>
+                    <tr>
+                        <td>SSD:</td>
+                        <td><em>600 MB/s</em></td>
+                        <td>4G:</td>
+                        <td><em>100 Mb/s</em></td>
+                    </tr>
+                    <tr>
+                        <td>SATA-III:</td>
+                        <td><em>6000 Mb/s</em></td>
+                        <td>Fiber:</td>
+                        <td><em>100 Mb/s</em></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <br>
+
+                ### *瀏覽器環境才是問題！*
+                <!-- .element: class="fragment" -->
+            </script>
+        </section>
+
+        <section data-markdown data-background="<%= BASE_URL %>npm.png"
+                 style="background: rgba(0,0,0,0.7)">
+            <script type="text/template">
+                # NPM
+
+                Node Package Manager
+
+                *Library 和工具們的寶庫*
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+                但是 JavaScript 不懂 import
+
+                要寫一堆 module 的路徑太累了吧
+                <!-- .element: class="fragment" -->
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+                <img src="<%= BASE_URL %>babel-logo.png" style="
+                            width: 500px;
+                            border: 0;
+                        "/>
+                ## *JavaScript compiler*
+
+                Use next generation JavaScript, today.
+            </script>
+        </section>
+
+        <!--    (5)Workshop - Gulp    -->
+
+        <section data-markdown>
+            <script type="text/template">
+                ### 第五章：善用工具篇
+
+                # *Gulp*
+
+                <img src="<%= BASE_URL %>gulp-2x.png" style="
+                            width: 80px;
+                            border: 0;
+                        "/>
+            </script>
+        </section>
+
+        <!--    (6)Workshop - Webpack    -->
 
         <section data-markdown>
             <script type="text/template">

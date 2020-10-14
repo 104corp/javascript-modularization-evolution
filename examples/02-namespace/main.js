@@ -7,12 +7,14 @@ var MYAPP = {
   }
 };
 
-MYAPP.foo();
+// MYAPP.foo();
 
 // 在其他地方可以加入新方法
 // MYAPP.myFunc = function() {
 //   console.log("My function!");
 // };
+
+// MYAPP.myFunc();
 
 // 甚至是整個複寫
 // MYAPP = {
@@ -20,10 +22,12 @@ MYAPP.foo();
 //     document.getElementById("app").innerHTML = "<h1>Goodbye MYAPP</h1>";
 //   }
 // };
+//
+// MYAPP.bar();
 
 // 小心翼翼的宣告
-// MYAPP = MYAPP || {
-//   foo: function() {
-//     document.getElementById("app").innerHTML = "<h1>Goodbye MYAPP</h1>";
-//   }
-// };
+MYAPP = MYAPP || {
+  foo: function() {
+    document.getElementById("app").innerHTML = "<h1>Goodbye MYAPP</h1>";
+  }
+};
