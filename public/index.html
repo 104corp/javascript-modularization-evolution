@@ -495,6 +495,49 @@
 
         <section data-markdown>
             <script type="text/template">
+                同步載入在 Sever 不是問題
+
+                <br>
+
+                <table>
+                    <thead>
+                    <tr>
+                        <th>硬碟 I/O</th>
+                        <th></th>
+                        <th>網速 I/O</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>HDD:</td>
+                        <td><em>100 MB/s</em></td>
+                        <td>ADSL:</td>
+                        <td><em>4 Mb/s</em></td>
+                    </tr>
+                    <tr>
+                        <td>SSD:</td>
+                        <td><em>600 MB/s</em></td>
+                        <td>4G:</td>
+                        <td><em>100 Mb/s</em></td>
+                    </tr>
+                    <tr>
+                        <td>SATA-III:</td>
+                        <td><em>6000 Mb/s</em></td>
+                        <td>Fiber:</td>
+                        <td><em>100 Mb/s</em></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <br>
+
+                ### *瀏覽器環境才是問題！*
+                <!-- .element: class="fragment" -->
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
                 ### 水火不容
 
                 平平都是一樣的 library，為什麼要分那麼多
@@ -692,6 +735,11 @@
                 script(type='module' src='main.js')
                 script(type='module' src='modules/math.js') // 加上 type="module"
                 ```
+
+                <img src="<%= BASE_URL %>07_3_phases.png" style="
+                            width: 900px;
+                            border: 0;
+                        "/>
             </script>
         </section>
 
@@ -743,55 +791,39 @@
 
         <section data-markdown>
             <script type="text/template">
-                ## ES Module 運作模式
-
-                <img src="<%= BASE_URL %>07_3_phases.png" style="
-                            width: 900px;
-                            border: 0;
-                        "/>
-            </script>
-        </section>
-
-        <section data-markdown>
-            <script type="text/template">
-                同步載入在 Sever 不是問題
-
-                <br>
-
                 <table>
-                    <thead>
+                    <caption><em>比較表</em></caption>
                     <tr>
-                        <th>硬碟 I/O</th>
-                        <th></th>
-                        <th>網速 I/O</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>HDD:</td>
-                        <td><em>100 MB/s</em></td>
-                        <td>ADSL:</td>
-                        <td><em>4 Mb/s</em></td>
+                        <th scope="col"></th>
+                        <th scope="col">Browser</th>
+                        <th scope="col">Node</th>
+                        <th scope="col">常見簡稱</th>
                     </tr>
                     <tr>
-                        <td>SSD:</td>
-                        <td><em>600 MB/s</em></td>
-                        <td>4G:</td>
-                        <td><em>100 Mb/s</em></td>
+                        <th scope="row">CommonJS</th>
+                        <td></td>
+                        <td>✅️</td>
+                        <td>cjs️</td>
                     </tr>
                     <tr>
-                        <td>SATA-III:</td>
-                        <td><em>6000 Mb/s</em></td>
-                        <td>Fiber:</td>
-                        <td><em>100 Mb/s</em></td>
+                        <th scope="row">AMD</th>
+                        <td>✅</td>
+                        <td></td>
+                        <td>amd</td>
                     </tr>
-                    </tbody>
+                    <tr>
+                        <th scope="row">UMD</th>
+                        <td>✅</td>
+                        <td>✅</td>
+                        <td>umd</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">ES Module</th>
+                        <td>✅</td>
+                        <td>✅</td>
+                        <td>esm</td>
+                    </tr>
                 </table>
-
-                <br>
-
-                ### *瀏覽器環境才是問題！*
-                <!-- .element: class="fragment" -->
             </script>
         </section>
 
@@ -834,11 +866,221 @@
                 ### 第五章：善用工具篇
 
                 # *Gulp*
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+                # *Gulp*
 
                 <img src="<%= BASE_URL %>gulp-2x.png" style="
                             width: 80px;
                             border: 0;
                         "/>
+
+                A toolkit to automate & enhance your workflow
+
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+                ## *以洗衣服為例*
+
+                <div>
+                    <img src="<%= BASE_URL %>laundry.jpg" style="
+                            width: 450px;
+                            border: 0;
+                        "/>
+                </div>
+
+                洗衣 -> 洗清 -> 脫水
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+                ## *以洗衣服為例*
+
+                <div>
+                    <img src="<%= BASE_URL %>wash_machine.jpg" style="
+                            width: 450px;
+                            border: 0;
+                        "/>
+                </div>
+
+                Input(髒衣服) -> Output(乾淨的衣服)
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+                ## Gulp - *Install*
+
+                ```bash
+                $ yarn global add gulp-cli
+                $ yarn init
+                $ yarn add gulp
+                $ gulp --version
+                ```
+
+                ```javascript
+                // gulpfile.js
+                function defaultTask(cb) {
+                    // place code for your default task here
+                    cb();
+                }
+
+                exports.default = defaultTask;
+                ```
+
+                ```bash
+                $ gulp
+                ```
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+                ## Gulp - *src and dest*
+
+                - src()  - 輸入
+                - dest() - 輸出
+
+                ```javascript
+                const { src, dest } = require("gulp");
+
+                function defaultTask() {
+                    return src("js/main.js").pipe(dest("dist/"));
+                }
+
+                exports.default = defaultTask;
+                ```
+
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+                ## Gulp - *Plugins*
+
+                許多工具都有 Gulp plugin，通常叫 gulp-ooxx
+
+                - gulp-rename
+                - gulp-uglify
+                - gulp-babel
+                - ...
+
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+                ## Gulp - *Plugins*
+
+                以合併壓縮為例
+
+                ```javascript
+                // gulpfile.js
+                const { src, dest } = require("gulp");
+                const uglify = require("gulp-uglify");
+                const concat = require("gulp-concat");
+
+                function defaultTask() {
+                    return src(["js/main.js"])
+                        .pipe(concat("all.js"))
+                        .pipe(uglify())
+                        .pipe(dest("dist/"));
+                }
+
+                exports.default = defaultTask;
+                ```
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+                ## Gulp - *Named Task*
+
+                同時擁有好多種功能
+
+                ```javascript
+                const { src, dest } = require("gulp");
+
+                function defaultTask() {
+                    return src("js/main.js").pipe(dest("dist/"));
+                }
+
+                exports.myTask = defaultTask; // named task
+                ```
+
+                ```bash
+                $ gulp myTask
+                ```
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+                ## Gulp - *series and parallel*
+
+                - series()  - 同步執行
+                - parallel() - 非同步執行
+
+                ```javascript
+                const { src, dest, series, parallel } = require("gulp");
+                function task1() {
+                    // ...task1
+                }
+                function task2() {
+                    // ...task2
+                }
+                function seriesTask() {
+                    return series(task1, task2); // 執行完 task1 才會接著執行 task2
+                }
+                function parallelTask() {
+                    return parallel(task1, task2); // 兩個 task 同時開始執行
+                }
+                ```
+
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+                ## Gulp - *Watch*
+
+                省去每次都要重下指令的麻煩
+
+                ```javascript
+                const { watch } = require('gulp');
+
+                function watchTask() {
+                    return watch(
+                        ["js/main.js"], // globs
+                        { ignoreInitial: false }, // options
+                        defaultTask // task
+                    ).on("change", function(path, stats) {});
+                }
+
+                exports.default = watchTask;
+                ```
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+                ## SourceMap!
+
+                省去自己重新整理
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+                ## BrowserSync
+
+                省去自己重新整理
             </script>
         </section>
 
